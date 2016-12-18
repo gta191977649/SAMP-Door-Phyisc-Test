@@ -9,8 +9,9 @@ public class DoorPhysics : MonoBehaviour {
     [Header("角速度")]
     public float omega = 0.2f;
     public float A = 0.5f;
+    public float c = 0.01f;
     public float dt = 0;
-    public float phine = 20f;
+  
     
 
     void Start () {
@@ -20,7 +21,7 @@ public class DoorPhysics : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        float angle = A * Mathf.Cos(omega * dt + phine);
+        float angle = A * Mathf.Pow(2,-c*dt) * Mathf.Sin(omega * dt );
         transform.eulerAngles = new Vector3(0,angle,0);
         Debug.Log(angle);
         dt++;
